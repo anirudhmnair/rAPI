@@ -1,0 +1,16 @@
+<section>
+<mat-drawer-container class="mat-sidenav-container" autosize>
+    <mat-drawer #drawer mode="side">
+      <a *ngFor="let app of rapiapplication" [routerLink]="['/app',app.name]">
+        <img [src]="app.image" alt="{{app.image}}">
+        {{app.name}} <!--Remove Later-->
+    </a>
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <button type="button" class="mat-side-nav-icon" (click)="drawer.toggle()">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </mat-drawer-container>
+</section>
