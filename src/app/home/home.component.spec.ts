@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RapiAppsComponent } from './rapi-apps.component';
+import { HomeComponent } from './home.component';
 
-describe('RapiAppsComponent', () => {
-  let component: RapiAppsComponent;
-  let fixture: ComponentFixture<RapiAppsComponent>;
+describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RapiAppsComponent]
+      imports: [HomeComponent]
     });
-    fixture = TestBed.createComponent(RapiAppsComponent);
+    fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

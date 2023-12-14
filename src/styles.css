@@ -10,7 +10,7 @@
     font-size: 10px;
   }
   :root {
-    --primary-color: rgb(128, 128, 128);
+    --primary-color: rgb(0, 0, 0);
     --secondary-color: rgb(214, 214, 214);
     --accent-color: #e8e7fa;
     --shadow-color: #E8E8E8;

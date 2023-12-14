@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { SideNavComponent } from './side-nav/side-nav.component';
 import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +13,8 @@ import { RouterModule } from '@angular/router';
     RouterOutlet,
     MatToolbarModule,
     MatIconModule,
-    SideNavComponent,
-    RouterModule
+    RouterModule,
+    HomeComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
