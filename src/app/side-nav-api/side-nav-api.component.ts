@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApplicationListComponent } from '../application-list/application-list.component';
+import { RouterLink,RouterOutlet } from '@angular/router';
 import { ApplicationApiList } from '../rapi-apps';
 
 @Component({
@@ -8,14 +9,18 @@ import { ApplicationApiList } from '../rapi-apps';
   standalone: true,
   imports: [CommonModule,
   ApplicationListComponent,
+  RouterLink,
+  RouterOutlet,
 ],
   template: `
     <section>
-      {{applicationApi.apiName}}
+      <a [routerLink]="['/app',applicationApi.name,applicationApi.url]" class="api-name">{{applicationApi.apiName}}</a>
     </section>
   `,
   styleUrls: ['./side-nav-api.component.css']
 })
 export class SideNavApiComponent {
   @Input() applicationApi!: ApplicationApiList;
+
+  
 }

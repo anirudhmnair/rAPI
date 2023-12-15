@@ -1,0 +1,15 @@
+.spacer{
+    flex:1 1 auto;
+}
+
+
+
+main {
+    height: fit-content;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+.toolbar{
+  background-color: rgb(238, 251, 255);
+  color: rgb(0, 151, 197);
+}

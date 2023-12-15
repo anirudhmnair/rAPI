@@ -12,7 +12,7 @@ import { SideNavComponent } from '../side-nav/side-nav.component';
   ],
   template: `
     <section>
-      <app-side-nav></app-side-nav>
+      <div>Lets Start!</div>
     </section>
   `,
   styleUrls: ['./application-list.component.css']

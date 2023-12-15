@@ -11,6 +11,11 @@ export const routes: Routes = [
     {
         path: 'app/:name',
         component: ApplicationListComponent,
-        title: 'rAPI'
+        title: 'rAPI App'
+    },
+    {
+        path: 'app/:name/:apiName',
+        component: ApplicationListComponent,
+        title: 'rAPI api'
     }
 ];

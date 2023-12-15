@@ -1,16 +1,47 @@
 <section>
-<mat-drawer-container class="mat-sidenav-container" autosize>
-    <mat-drawer #drawer mode="side">
-        <app-side-nav-apps
-          *ngFor = "let application of applicationList"
-          [application]= "application">
-        </app-side-nav-apps>
-      <a><mat-icon>home</mat-icon>Home</a>
+  <mat-toolbar class="toolbar">
+    <button class="mat-side-nav-icon" (click)="drawer.toggle()">
+        <span>
+          <mat-icon>menue</mat-icon>
+        </span>
+    </button>
+    <a [routerLink]="['/']" class="toolbar-text"> API Runner </a>
+    
+  </mat-toolbar>
+  <mat-drawer-container class="mat-sidenav-container">
+    <mat-drawer #drawer mode="side" opened="false" class="nav-items">
+      
+        <div class="search">Home</div>
+          <form class="input_search">
+            <input type="text" placeholder=" Search">
+          </form>
+        
+        <div>
+          <div class="list-container">Web Applications</div>
+          <div>
+            <app-side-nav-apps
+              *ngFor = "let application of applicationList"
+              [application]= "application">
+            </app-side-nav-apps>
+          </div>
+        </div>
+        <div>
+          <div class="list-container">API</div>
+          <a *ngFor = "let api of applicationApiList" 
+          [routerLink]="['/app',api.name,api.apiName]" 
+          class="api-block">
+            <button
+            (click)= "showFiller = !showFiller"
+            mat-flat-button class="api-button">
+              <div class="api-block">
+                {{api.apiName}}
+              </div>
+            </button> 
+          </a>
+        </div>
     </mat-drawer>
     <div>  
-      <button type="button" class="mat-side-nav-icon" (click)="drawer.toggle()">
-        <mat-icon>chevron_right</mat-icon>
-      </button>
+      <router-outlet></router-outlet>
     </div>
   </mat-drawer-container>
 </section>

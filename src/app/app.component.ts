@@ -3,8 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import { MatSidenavModule} from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +17,13 @@ import { HomeComponent } from './home/home.component';
     MatToolbarModule,
     MatIconModule,
     RouterModule,
-    HomeComponent,
+    SideNavComponent,
+    MatButtonModule,MatSidenavModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'rAPI';
-
 
 }

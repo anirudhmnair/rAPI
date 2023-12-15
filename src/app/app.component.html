@@ -1,13 +1,17 @@
 <main>
   <header>
-    <mat-toolbar>
-      <a [routerLink]="['/']" class="primary">
-      <mat-icon>hub</mat-icon>
-    </a>
-      <span> &nbsp; rAPI</span>
+    <mat-toolbar class="toolbar">
+      <div p>
+      <span>Run large automation tasks using API</span>
+      <div style="font-size: x-small;">Use execel uploads and AI to create applications and content.</div>
+      </div>
     </mat-toolbar>
   </header>
+  <section>
+    <app-side-nav></app-side-nav>
+  </section>
   <section>
     <router-outlet></router-outlet>
   </section>
 </main>
+

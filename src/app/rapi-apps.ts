@@ -8,6 +8,7 @@ export interface ApplicationApiList {
     id: Number;
     name: string;
     apiName: string;
+    url: string;
 
 }
 
@@ -34,14 +35,16 @@ export const applicationList: RapiApps[] =[
 
 export const applicationApiList: ApplicationApiList[] =[
     {
-    id: 1,
-    name: 'Clappia',
-    apiName: 'Create App',
-    },
-    {
         id: 1,
         name: 'Clappia',
-        apiName: 'Help for Clappia',
+        apiName: 'CreateApp',
+        url: 'createapp'
+    },
+    {
+        id: 2,
+        name: 'Webflow',
+        apiName: 'CreateCMSItems',
+        url: 'help'
     }
 ]
 
