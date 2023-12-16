@@ -12,14 +12,6 @@ export interface ApplicationApiList {
 
 }
 
-export interface ApplicatonApiConfig {
-    id: number;
-    name: string;
-    apiName: string;
-    fieldname: string;
-    type:string;
-}
-
 export const applicationList: RapiApps[] =[
     {
         id:1,
@@ -37,45 +29,13 @@ export const applicationApiList: ApplicationApiList[] =[
     {
         id: 1,
         name: 'Clappia',
-        apiName: 'CreateApp',
-        url: 'createapp'
+        apiName: 'createApp',
+        url: 'createApp'
     },
     {
         id: 2,
         name: 'Webflow',
-        apiName: 'CreateCMSItems',
-        url: 'help'
+        apiName: 'createCMSItems',
+        url: 'createCMSItems'
     }
-]
-
-export const applicationsApiConfig: ApplicatonApiConfig[] =[
-    {
-        id:1,
-        name: 'Clappia',
-        apiName:'createApp',
-        fieldname: 'x-api-key',
-        type: 'header',
-    },
-    {
-        id:1,
-        name: 'Clappia',
-        apiName:'createApp',
-        fieldname : 'Workplace Id',
-        type: 'body',
-    },
-    {
-        id:1,
-        name: 'Clappia',
-        apiName:'createApp',
-        fieldname : 'Requesting User Email',
-        type: 'body',
-    },
-    {
-        id:1,
-        name: 'Clappia',
-        apiName:'createApp',
-        fieldname : 'Requesting User Email',
-        type: 'excel',
-    },
-
 ]

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { ApplicationListComponent } from './application-list/application-list.component';
 import { HomeComponent } from './home/home.component';
+import { PlaygroundComponent } from './playground/playground.component';
 
 export const routes: Routes = [
     {
@@ -15,7 +16,7 @@ export const routes: Routes = [
     },
     {
         path: 'app/:name/:apiName',
-        component: ApplicationListComponent,
+        component: PlaygroundComponent,
         title: 'rAPI api'
     }
 ];

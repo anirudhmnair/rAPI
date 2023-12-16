@@ -14,7 +14,7 @@ import { ApplicationApiList } from '../rapi-apps';
 ],
   template: `
     <section>
-      <a [routerLink]="['/app',applicationApi.name,applicationApi.url]" class="api-name">{{applicationApi.apiName}}</a>
+      <a [routerLink]="['/app',applicationApi.name,applicationApi.apiName]" class="api-name">{{applicationApi.apiName}}</a>
     </section>
   `,
   styleUrls: ['./side-nav-api.component.css']
