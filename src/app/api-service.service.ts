@@ -7,12 +7,13 @@ import { ApiDefinition, apiDefinition } from './api-definition';
 export class ApiService {
 
   apiDefinition: ApiDefinition[] = apiDefinition
+  apiUrl: ApiDefinition | undefined
 
   getApiDefinition(name: string, apiName: string){
     return this.apiDefinition.filter(apiDefinition => apiDefinition.name === name && apiDefinition.apiName === apiName)
   }
 
-  getApiList(){
+  getApiUrl(){
     return this.apiDefinition
   }
 }

@@ -5,6 +5,7 @@ export interface ApiDefinition {
     apiName: string;
     fieldname: string;
     type:string;
+    value:string;
 }
 
 export const apiDefinition: ApiDefinition[] =[
@@ -12,8 +13,17 @@ export const apiDefinition: ApiDefinition[] =[
         id:1,
         name: 'Clappia',
         apiName:'createApp',
+        fieldname: 'my/url',
+        type: 'url',
+        value:'',
+    },
+    {
+        id:1,
+        name: 'Clappia',
+        apiName:'createApp',
         fieldname: 'x-api-key',
         type: 'header',
+        value:'',
     },
     {
         id:1,
@@ -21,6 +31,7 @@ export const apiDefinition: ApiDefinition[] =[
         apiName:'createApp',
         fieldname : 'Workplace Id',
         type: 'body',
+        value:'',
     },
     {
         id:1,
@@ -28,6 +39,7 @@ export const apiDefinition: ApiDefinition[] =[
         apiName:'createApp',
         fieldname : 'Requesting User Email',
         type: 'body',
+        value:'',
     },
     {
         id:1,
@@ -35,6 +47,96 @@ export const apiDefinition: ApiDefinition[] =[
         apiName:'createApp',
         fieldname : 'Upload Excel',
         type: 'excel',
+        value:'',
     },
-
+    {
+        id:1,
+        name: 'Clappia',
+        apiName:'createApp',
+        fieldname : 'POST',
+        type: 'method',
+        value:'',
+    },
+    {
+        id:1,
+        name: 'Clappia',
+        apiName:'createApp',
+        fieldname : 'Sections',
+        type: 'body-params-parent',
+        value:'',
+    },
+    {
+        id:1,
+        name: 'Clappia',
+        apiName:'createApp',
+        fieldname : 'Fields',
+        type: 'body-params-child',
+        value:'',
+    },
+    {
+        id:1,
+        name: 'Clappia',
+        apiName:'createApp',
+        fieldname : 'Options',
+        type: 'field-params',
+        value:'',
+    },
+    // createAppExcel //
+    {
+        id:2,
+        name: 'Clappia',
+        apiName:'createAppExcel',
+        fieldname: 'https://api-public-v3.clappia.com/appdefinitionv2/createApp',
+        type: 'url',
+        value:'',
+    },
+    {
+        id:2,
+        name: 'Clappia',
+        apiName:'createAppExcel',
+        fieldname : 'POST',
+        type: 'method',
+        value:'',
+    },
+    {
+        id:2,
+        name: 'Clappia',
+        apiName:'createAppExcel',
+        fieldname: 'x-api-key',
+        type: 'header',
+        value:'',
+    },
+    {
+        id:2,
+        name: 'Clappia',
+        apiName:'createAppExcel',
+        fieldname : 'workplaceId',
+        type: 'header',
+        value:'',
+    },
+    {
+        id:2,
+        name: 'Clappia',
+        apiName:'createAppExcel',
+        fieldname : 'requestingUserEmailAddress',
+        type: 'body',
+        value:'',
+    },
+    {
+        id:2,
+        name: 'Clappia',
+        apiName:'createAppExcel',
+        fieldname : 'appName',
+        type: 'body',
+        value:'',
+    },
+    {
+        id:2,
+        name: 'Clappia',
+        apiName:'createAppExcel',
+        fieldname : 'Upload Excel',
+        type: 'excel',
+        value:'',
+    },
+     
 ]

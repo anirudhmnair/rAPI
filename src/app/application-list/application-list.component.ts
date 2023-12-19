@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { SideNavComponent } from '../side-nav/side-nav.component';
 
+
 @Component({
   selector: 'app-application-list',
   standalone: true,
@@ -21,5 +22,4 @@ import { SideNavComponent } from '../side-nav/side-nav.component';
 export class ApplicationListComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
 
-  
 }

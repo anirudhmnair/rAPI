@@ -30,12 +30,18 @@ export const applicationApiList: ApplicationApiList[] =[
         id: 1,
         name: 'Clappia',
         apiName: 'createApp',
-        url: 'createApp'
+        url: 'createApp',
     },
     {
         id: 2,
+        name: 'Clappia',
+        apiName: 'createAppExcel',
+        url: 'createAppExcel',
+    },
+    {
+        id: 3,
         name: 'Webflow',
         apiName: 'createCMSItems',
-        url: 'createCMSItems'
+        url: 'createCMSItems',
     }
 ]

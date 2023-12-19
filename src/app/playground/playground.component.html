@@ -1,1 +1,50 @@
-<p>playground works!</p>
+<main>
+    <header>{{apiUrl?.name}}  {{apiUrl?.apiName}}</header>
+    <section>
+        <span>{{apiMethod?.fieldname}} </span>
+        <span>{{apiUrl?.fieldname}}</span>
+    </section>
+
+    <div>
+        <span>API Headers</span>
+        
+        <div *ngFor="let header of apiHeader; let i = index;">
+            <form>
+                <label>{{header.fieldname}}</label>
+                <!-- name=a{{i}} is very important to be inlcuded as it helps refernce to the binding variable in ng model-->
+                <!-- Check what track by index is used for-->
+                <input type="text" name=header{{i}} placeholder="{{header.fieldname}}" [(ngModel)]= "apiHeader[i].value">
+            </form>
+        </div>
+
+        <div>
+            <span>API Body</span>
+            <div *ngFor="let body of apiBody; let i = index;">
+                <form>
+                    <label>{{body.fieldname}}</label>
+                    <input type="text" name=body{{i}} placeholder="{{body.fieldname}}" [(ngModel)]="apiBody[i].value">
+                </form>
+            </div>
+        </div>
+
+        <div *ngIf="apiExcel?.type">
+            <div style="margin: 50px auto;width: 50%;">
+                <h2>Please select a Excel file: </h2>
+                <input type="file" (input)="onFileChange($event)" multiple="false" accept=".xlsx">
+                
+            </div>
+        </div>
+    </div>
+
+    <code>
+        Headers
+        <div *ngFor="let header of apiHeader">
+            '{{header.fieldname}}':{{header.value}}
+        </div>
+        Body
+        <div *ngFor="let body of apiBody">
+            {{body.fieldname}}:{{body.value}}
+        </div>
+    </code>
+    <button (click)="updateheader()">update</button>
+</main>
