@@ -6,6 +6,7 @@
     </section>
 
     <div>
+        <!--[1]-->
         <span>API Headers</span>
         
         <div *ngFor="let header of apiHeader; let i = index;">
@@ -45,6 +46,7 @@
         <div *ngFor="let body of apiBody">
             {{body.fieldname}}:{{body.value}}
         </div>
+        {{xbody| json}}
     </code>
-    <button (click)="updateheader()">update</button>
+    <button (click)="sendApiRequest()">update</button>
 </main>

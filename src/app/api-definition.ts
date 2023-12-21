@@ -4,10 +4,24 @@ export interface ApiDefinition {
     name: string;
     apiName: string;
     fieldname: string;
-    type:string;
-    value:string;
+    type: string;
+    value: string;
 }
 
+// -------------------------------------------------------- //
+// Necessary Interfaces for playground                      //
+// -------------------------------------------------------- //
+export interface Headers{ 
+    [key: string]: any;
+  }
+
+export interface Body{ 
+    [key: string]: any;
+  }
+
+// -------------------------------------------------------- //
+// Necessary Functions for playground                       //
+// -------------------------------------------------------- //
 export const apiDefinition: ApiDefinition[] =[
     {
         id:1,
@@ -29,7 +43,7 @@ export const apiDefinition: ApiDefinition[] =[
         id:1,
         name: 'Clappia',
         apiName:'createApp',
-        fieldname : 'Workplace Id',
+        fieldname : '"WorkplaceId"',
         type: 'body',
         value:'',
     },
@@ -134,7 +148,7 @@ export const apiDefinition: ApiDefinition[] =[
         id:2,
         name: 'Clappia',
         apiName:'createAppExcel',
-        fieldname : 'Upload Excel',
+        fieldname : 'sections',
         type: 'excel',
         value:'',
     },

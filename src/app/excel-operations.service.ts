@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Field, Section } from './excel-templates';
-import * as XLSX from 'xlsx';
-
 
 @Injectable({
   providedIn: 'root'
