@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "rapi-ccefe": {
+      "hosting": {
+        "rAPI": [
+          "apirunner"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "rapi-ccefe"
+  }
+}
