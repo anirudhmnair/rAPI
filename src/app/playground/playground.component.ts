@@ -7,8 +7,8 @@ import { ExcelOperationsService } from '../excel-operations.service';
 import { HttpClientModule } from '@angular/common/http';
 import * as XLSX from 'xlsx';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {MatButtonModule} from '@angular/material/button';
 import { Form, FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { trigger } from '@angular/animations';
 
 
 
@@ -18,7 +18,8 @@ import { trigger } from '@angular/animations';
   imports: [CommonModule,
   FormsModule,
   ReactiveFormsModule,
-  HttpClientModule
+  HttpClientModule,
+  MatButtonModule
 ],
   templateUrl: './playground.component.html',
   styleUrls: ['./playground.component.css']
@@ -38,17 +39,20 @@ export class PlaygroundComponent{
   apiDefinition: ApiDefinition[] = [];
   xheaders: Headers = {};
   xbody: Body = {};
+  response: any;
   
 
   AppName: string = '';
   AppApi: string = '' ;
 
   apiUrl: ApiDefinition | undefined;
+  apiUrlParams: ApiDefinition | undefined;
   apiHeader: ApiDefinition[] = [];
   apiBody: ApiDefinition[] = [];
   apiBodyParams: ApiDefinition | undefined;
   apiMethod: ApiDefinition | undefined;
   apiExcel: ApiDefinition | undefined ;
+  runnerType: ApiDefinition | undefined ;
   
 
   // -------------------------------------------------------- //
@@ -72,20 +76,21 @@ export class PlaygroundComponent{
 
       this.apiDefinition = this.apiService.getApiDefinition(this.AppName,this.AppApi);
 
-      this.apiUrl = this.apiDefinition.find(apiDefinition => apiDefinition.type === 'url');
+      this.apiUrl = this.apiDefinition.find(apiDefinition => apiDefinition.type === 'url' && apiDefinition.apiName === this.AppApi);
 
-      this.apiMethod = this.apiDefinition.find(apiDefinition => apiDefinition.type === 'method');
+      this.apiMethod = this.apiDefinition.find(apiDefinition => apiDefinition.type === 'method' && apiDefinition.apiName === this.AppApi);
 
-      this.apiHeader = this.apiDefinition.filter(apiDefinition => apiDefinition.type === 'header');
+      this.apiHeader = this.apiDefinition.filter(apiDefinition => apiDefinition.type === 'header' && apiDefinition.apiName === this.AppApi);
 
       this.apiBody = this.apiDefinition.filter(apiDefinition => apiDefinition.type === 'body');
 
-      this.apiBodyParams = this.apiDefinition.find(apiDefinition => apiDefinition.type === 'body-params-parent');
+      this.apiBodyParams = this.apiDefinition.find(apiDefinition => apiDefinition.type === 'body-params-parent' && apiDefinition.apiName === this.AppApi);
 
-      this.apiExcel = this.apiDefinition.find(apiDefinition => apiDefinition.type === 'excel');
+      this.apiExcel = this.apiDefinition.find(apiDefinition => apiDefinition.type === 'excel' && apiDefinition.apiName === this.AppApi);
 
-      console.log('apiheader',this.apiHeader)
+      this.apiUrlParams = this.apiDefinition.find(apiDefinition => apiDefinition.type === 'urlParameters' && apiDefinition.apiName === this.AppApi)
 
+      this.runnerType = this.apiDefinition.find(apiDefinition => apiDefinition.type === 'runnerType' && apiDefinition.apiName === this.AppApi);
     })
   }
 
@@ -100,6 +105,7 @@ export class PlaygroundComponent{
   x_payload: {} = {};
   fileName:string | undefined;
   headerValues: {} = {};
+  
 
 
   onFileChange(evt: any) {
@@ -123,15 +129,24 @@ export class PlaygroundComponent{
       /* save data */
       this.data = (XLSX.utils.sheet_to_json(ws, { header: 1,  defval: '' }));
       this.data.shift()
-      this.x_payload = this.excelOperations.createAppClappia(this.data);
+      if (this.apiExcel?.type == "excel"){
+        this.x_payload = this.excelOperations.parseExcel(this.data, this.apiExcel.name);
+      }
     };
+
+    console.log(this.runnerType?.fieldname)
+    console.log(this.apiExcel?.name)
+    console.log('x_payload',this.x_payload)
+    console.log(this.apiExcel?.type)
     reader.readAsBinaryString(target.files[0]);
+
   }
 
   // -------------------------------------------------------- //
   // Implementing adding input body fields                    //
   // Dynamic form creation                                    //
   // Using the final json output in the API body              //
+  // Angulat Drag Drop SDK                                    //
   // https://stackblitz.com/edit/angular-ivy-jntmzf           //
   // -------------------------------------------------------- //
   // Important refernces                                      //
@@ -156,7 +171,18 @@ export class PlaygroundComponent{
   // https://stackblitz.com/edit/angular-zmscxv?file=src%2Fapp%2Fapp.component.html,src%2Fapp%2Fapp.component.ts //
   
   sendApiRequest() {
-    
+    let url: string;
+    let fielddata: string | undefined;
+
+    fielddata = this.apiExcel?.fieldname;
+
+    if(this.apiUrlParams?.value !== undefined){
+      url = this.apiUrl?.fieldname!+this.apiUrlParams?.value;
+    }
+    else{
+      url = this.apiUrl?.fieldname!
+    }
+    console.log(this.apiExcel?.fieldname,url)
     
     this.xheaders['Content-Type'] = 'application/json',
     this.apiHeader.forEach(header => {
@@ -168,15 +194,25 @@ export class PlaygroundComponent{
     });
 
 
-    if (this.apiExcel?.fieldname !== ""){
+    if (this.apiExcel?.fieldname !== undefined && this.runnerType?.fieldname == 'singleRequest'){
       this.xbody[this.apiExcel?.fieldname!] = this.x_payload;
     }
 
-    let response = this.apiService.trigger(this.apiUrl?.fieldname!, this.xbody, this.xheaders);
+    if (this.apiExcel?.fieldname !== undefined && this.runnerType?.fieldname == 'multiRequest'){
+      this.xbody = this.x_payload;
+    }
+
+    console.log('The url is',url)
+    console.log('The header is',this.xheaders);
+    console.log('The body is',this.xbody);
+
+    let response = this.apiService.createSomething(this.runnerType?.fieldname, fielddata!,url, this.xbody, this.xheaders);
     console.log('The url is',this.apiUrl?.fieldname!)
     console.log('The header is',this.xheaders);
     console.log('The body is',this.xbody);
     console.log('The response is',response)
+
+    this.response = response;
   }
   // -------------------------------------------------------- //
   // Creating key value pair : indexsignature  [above]        //

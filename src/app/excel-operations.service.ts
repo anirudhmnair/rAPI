@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Field, Section } from './excel-templates';
+import { Field, Section, Items } from './excel-templates';
 
 @Injectable({
   providedIn: 'root'
@@ -7,12 +7,23 @@ import { Field, Section } from './excel-templates';
 
 export class ExcelOperationsService {
 
-  createAppClappia(data:any[][]) {
+  payload: any;
+  parseExcel(data:any[][], apiName:string){
+    if(apiName == 'Clappia'){
+     this.payload = this.parseExcelClappia(data);
+    };
+
+    if(apiName == 'Webflow'){
+     this.payload =  this.parseExcelWebflow(data);
+    };
+    return this.payload;
+  }
+
+  parseExcelClappia(data:any[][]) {
     
-  
     const sections = Array.from(new Set(data.map((row: any) => row[0])));
     const sectionPayload: Section[] = [];
-  
+
     sections.forEach((sectionName) => {
       const fields: Field[] = [];
       data.forEach((row: any) => {
@@ -42,5 +53,22 @@ export class ExcelOperationsService {
       sectionPayload.push(section);
     });
     return sectionPayload;
+  }
+
+  parseExcelWebflow(data:any[][]){
+    const collections = Array.from(new Set(data.map((row: any) => row[0])));
+    const collectiionPayload: any = [];
+
+    collections.forEach((collectionName) =>{
+      const fields: Items = {};
+      data.forEach((row: any) => {
+        if(row[0] === collectionName) {
+        fields[row[1]] = row[2];
+        };
+      });
+      console.log(fields)
+      collectiionPayload.push(fields)
+    });
+    return collectiionPayload;
   }
 }

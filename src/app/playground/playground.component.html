@@ -1,52 +1,66 @@
 <main>
-    <header>{{apiUrl?.name}}  {{apiUrl?.apiName}}</header>
-    <section>
-        <span>{{apiMethod?.fieldname}} </span>
-        <span>{{apiUrl?.fieldname}}</span>
-    </section>
-
-    <div>
-        <!--[1]-->
-        <span>API Headers</span>
-        
-        <div *ngFor="let header of apiHeader; let i = index;">
-            <form>
-                <label>{{header.fieldname}}</label>
-                <!-- name=a{{i}} is very important to be inlcuded as it helps refernce to the binding variable in ng model-->
-                <!-- Check what track by index is used for-->
-                <input type="text" name=header{{i}} placeholder="{{header.fieldname}}" [(ngModel)]= "apiHeader[i].value">
-            </form>
-        </div>
-
+    <header class="headers">
+        <span class="header">{{apiUrl?.name}}  {{apiUrl?.apiName}}</span>
         <div>
-            <span>API Body</span>
-            <div *ngFor="let body of apiBody; let i = index;">
-                <form>
-                    <label>{{body.fieldname}}</label>
-                    <input type="text" name=body{{i}} placeholder="{{body.fieldname}}" [(ngModel)]="apiBody[i].value">
-                </form>
+            <span class="method">{{apiMethod?.fieldname}} </span>
+            <span class="url">{{apiUrl?.fieldname}}</span>
+            <span *ngIf="apiUrlParams?.type == 'urlParameters'">
+                <input type="text" name="urlParams" placeholder="{{apiUrlParams?.value}}" [(ngModel)]="apiUrlParams!.value" class="input1">
+            </span>
+        </div>
+    </header>
+
+    <div class="content">
+        <div>
+            <!--[1]-->
+            <div class="sub_headers">API Headers</div>
+                <div *ngFor="let header of apiHeader; let i = index;" class="children" class="items">
+                    <form>
+                        <label>{{header.fieldname}}</label>
+                        <!-- name=a{{i}} is very important to be inlcuded as it helps refernce to the binding variable in ng model-->
+                        <!-- Check what track by index is used for-->
+                        <input type="text" name=header{{i}} placeholder="{{header.fieldname}}" [(ngModel)]= "apiHeader[i].value">
+                    </form>
+                </div>
+            <div>
+                <div class="sub_headers">API Body</div>
+                <div *ngFor="let body of apiBody; let i = index;" class="items">
+                    <form>
+                        <label>{{body.fieldname}}</label>
+                        <input type="text" name=body{{i}} placeholder="{{body.fieldname}}" [(ngModel)]="apiBody[i].value">
+                    </form>
+                </div>
             </div>
         </div>
-
-        <div *ngIf="apiExcel?.type">
-            <div style="margin: 50px auto;width: 50%;">
+        <div class="code">
+            <code class="codeBlock">
+                Headers
+                <div *ngFor="let header of apiHeader">
+                    '{{header.fieldname}}':{{header.value}}
+                </div>
+                Body
+                <div *ngFor="let body of apiBody">
+                    {{body.fieldname}}:{{body.value}}
+                </div>
+                <div>{{xbody| json}}</div>
+                Respose
+                <div>
+                    {{response}}
+                </div>
+            </code>
+            <div class="apiButton">
+                <button mat-stroked-button (click)="sendApiRequest()">{{AppApi}}</button>
+            </div>   
+        </div>
+    </div>
+    <div *ngIf="apiExcel?.type == 'excel'">
+        <div class="excel">
+            <div>
                 <h2>Please select a Excel file: </h2>
-                <input type="file" (input)="onFileChange($event)" multiple="false" accept=".xlsx">
-                
+                <button mat-raised-button>
+                    <input type="file" (input)="onFileChange($event)" multiple="false" accept=".xlsx">
+                </button>
             </div>
         </div>
     </div>
-
-    <code>
-        Headers
-        <div *ngFor="let header of apiHeader">
-            '{{header.fieldname}}':{{header.value}}
-        </div>
-        Body
-        <div *ngFor="let body of apiBody">
-            {{body.fieldname}}:{{body.value}}
-        </div>
-        {{xbody| json}}
-    </code>
-    <button (click)="sendApiRequest()">update</button>
 </main>

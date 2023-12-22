@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiDefinition, apiDefinition } from './api-definition';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Items } from './excel-templates';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
+  response: any = [];
+
   apiDefinition: ApiDefinition[] = apiDefinition
   apiUrl: ApiDefinition | undefined
 
@@ -24,13 +27,33 @@ export class ApiService {
     return this.apiDefinition
   }
 
+  createSomething(runnerType: string | undefined, bodyParam: string ,url: string, body: any, header: {}){
+
+    
+    if(runnerType == "singleRequest"){
+      this.response = this.trigger(url, body, header);
+      return this.response;
+    }
+
+    if(runnerType == "multiRequest"){
+      body.forEach(( row: any)=>{
+        let x_body: Items = {}
+        x_body[bodyParam] = [row];
+        this.trigger(url, x_body, header);
+        return this.response;
+      });
+    }
+    return this.response;
+
+  }
+
+
   // --------------------------------------------------//
   // Using Angular HTTP                                //
   // ------------------------------------------------- //
   // https://angular.io/guide/http-send-data-to-server //
   
   trigger(url: string, body: any, header: {}){
-    
 
     const httpOptions = {
       headers:  new HttpHeaders(header)

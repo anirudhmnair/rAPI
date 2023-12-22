@@ -1,0 +1,107 @@
+.headers {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    vertical-align: middle;
+    align-items: center;
+    margin-top: 5.5em;
+    margin-bottom: 5em;
+}
+
+.header{
+    font-size: xx-large;
+    margin-bottom: 1em;
+    
+}
+
+.url {
+    font-size: large;
+    
+}
+
+.method{
+    background-color: rgb(2, 87, 197);
+    color: aliceblue;
+    border-radius: 5px;
+    border: 1px solid blue;
+    text-align: center;
+}
+
+.url{
+    margin-left: 1em;
+}
+
+.content{
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 4em;
+    margin-right: 1.5em;
+    border-radius: 1px;
+}
+
+.code{
+    max-width: 37%;
+    width: 50%;
+    word-wrap: break-word;
+    margin-right: 1.5em;
+    margin-top: 4em;
+
+}
+
+.codeBlock{
+    border: 1px;
+    color: rgb(97, 98, 100);
+}
+
+.sub_headers{
+    font-size: large;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    
+    
+}
+
+.items{
+    max-width: 10em;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+}
+
+.input1[type=text]{
+    border: none;
+    background-color: rgb(238, 251, 255);
+    border-radius: 0.2em;
+    height: 2em;
+    border-style: solid;
+    border-color: rgb(0, 151, 197);
+    border-width: 0.1em;
+  }
+
+input[type=text]{
+    border: none;
+    background-color: rgb(255, 247, 210);
+    border-radius: 0.2em;
+    height: 2em;
+    border-style: solid;
+    border-color: rgb(255, 217, 0);
+    border-width: 0.1em;
+}
+
+.excel{
+    display: flex;
+
+    flex-direction: row;
+    vertical-align: middle;
+    justify-content: center;
+    margin-top: 4em;
+}
+
+.apiButton{
+    text-align: center;
+    margin-top: 1em;
+}
