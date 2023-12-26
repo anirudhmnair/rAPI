@@ -27,7 +27,7 @@ export class ApiService {
     return this.apiDefinition
   }
 
-  createSomething(runnerType: string | undefined, bodyParam: string ,url: string, body: any, header: {}){
+  createSomething(runnerType: string | undefined, bodyParam: string ,url: string, body: any, payload: any, header: {}){
 
     
     if(runnerType == "singleRequest"){
@@ -36,15 +36,15 @@ export class ApiService {
     }
 
     if(runnerType == "multiRequest"){
-      body.forEach(( row: any)=>{
-        let x_body: Items = {}
-        x_body[bodyParam] = [row];
-        this.trigger(url, x_body, header);
+      payload.forEach(( row: any)=>{
+        // let x_body: Items = {}
+        body[bodyParam] = row;
+        console.log('api_service ----data------',body)
+        this.trigger(url, body, header);
         return this.response;
       });
     }
     return this.response;
-
   }
 
 
@@ -54,7 +54,6 @@ export class ApiService {
   // https://angular.io/guide/http-send-data-to-server //
   
   trigger(url: string, body: any, header: {}){
-
     const httpOptions = {
       headers:  new HttpHeaders(header)
     };
@@ -66,7 +65,6 @@ export class ApiService {
       });
       return response;
     }
-
   // ---------------------------------------- //
   // Using fetch                              //
   // ---------------------------------------- //

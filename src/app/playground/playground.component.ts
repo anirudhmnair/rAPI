@@ -198,16 +198,16 @@ export class PlaygroundComponent{
       this.xbody[this.apiExcel?.fieldname!] = this.x_payload;
     }
 
-    if (this.apiExcel?.fieldname !== undefined && this.runnerType?.fieldname == 'multiRequest'){
-      this.xbody = this.x_payload;
-    }
+    // if (this.apiExcel?.fieldname !== undefined && this.runnerType?.fieldname == 'multiRequest'){
+    //   this.xbody = this.x_payload;
+    // }
 
     console.log('The url is',url)
     console.log('The header is',this.xheaders);
     console.log('The body is',this.xbody);
 
-    let response = this.apiService.createSomething(this.runnerType?.fieldname, fielddata!,url, this.xbody, this.xheaders);
-    console.log('The url is',this.apiUrl?.fieldname!)
+    let response = this.apiService.createSomething(this.runnerType?.fieldname, fielddata!,url, this.xbody, this.x_payload, this.xheaders);
+    console.log('The url is',url)
     console.log('The header is',this.xheaders);
     console.log('The body is',this.xbody);
     console.log('The response is',response)

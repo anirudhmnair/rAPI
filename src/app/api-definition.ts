@@ -5,7 +5,7 @@ export interface ApiDefinition {
     apiName: string;
     fieldname: string;
     type: string;
-    value: string;
+    value: string | boolean;
 }
 
 // -------------------------------------------------------- //
@@ -182,7 +182,7 @@ export const apiDefinition: ApiDefinition[] =[
         id:3,
         name: 'Webflow',
         apiName:'createCMSItems',
-        fieldname: 'token',
+        fieldname: 'authorization',
         type: 'header',
         value:'',
     },
@@ -200,7 +200,7 @@ export const apiDefinition: ApiDefinition[] =[
         apiName:'createCMSItems',
         fieldname : 'isArchived',
         type: 'body',
-        value:'false',
+        value: false,
     },
     {
         id:3,
@@ -208,7 +208,7 @@ export const apiDefinition: ApiDefinition[] =[
         apiName:'createCMSItems',
         fieldname : 'isDraft',
         type: 'body',
-        value:'false',
+        value: false,
     },
     {
         id:3,
